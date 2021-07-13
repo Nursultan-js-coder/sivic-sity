@@ -1,0 +1,29 @@
+.leaflet-container {
+    height: 564px;
+    width: 90%;
+}
+
+.leaflet-div-icon {
+    background: transparent;
+    border: none;
+}
+
+.mtuLabel {
+    /*background: #5c1212;*/
+    background: rgba(255, 255, 255, 0);
+    border:0;
+    border-radius: 0;
+    box-shadow: 0 0 0;
+}
+
+.mtuPopup {
+    pointer-events: none;
+}
+.centerify{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    height:100vh;
+    width:100%;
+}
+

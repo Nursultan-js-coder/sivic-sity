@@ -1,0 +1,17 @@
+.main-header-image{
+    max-width:100%;
+    border-radius:10px;
+}
+.dynamic-card{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width:300px;
+    margin:50px;
+    padding:20px;
+}
+.shadow{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+
+
+
