@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import MainHeader from "../../../components/MainHeader"
-import MainContent from "../../../components/MainContent"
+import Dashboards from "../../../components/MainContent"
 import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
 import Error from "../../../components/common/Error";
 
-function SafetyPage({safetyPageStore}){
+function SafetyPage({safetyPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
         safetyPageStore.pullPage();
         return () => {
@@ -22,10 +22,10 @@ function SafetyPage({safetyPageStore}){
                                 poweredBy = {safetyPageStore.pageStore.pageInfo?.poweredBy}
                                 text={safetyPageStore.pageStore.pageInfo?.text}
                                 imageURL = {safetyPageStore.pageStore.pageInfo?.imageUrl}
+                                indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Safety")?.indicators}
                     />
-                    <MainContent/>
                 </>
             )}
         </div>)
 }
-export default  compose(inject("safetyPageStore"))(observer(SafetyPage))
+export default  compose(inject("safetyPageStore","homeIndicatorsPageStore"))(observer(SafetyPage))

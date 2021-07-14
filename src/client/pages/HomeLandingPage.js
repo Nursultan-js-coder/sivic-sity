@@ -2,7 +2,7 @@ import React from "react"
 import Content from "../components/dashboard-layout"
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import SafetyPage from "./dashboard-pages/safety-page/safety-page";
-import AdministrationPage from "./dashboard-pages/adminsistration-page";
+import AdministrationPage from "./dashboard-pages/administration-page/administration-page";
 import DashboardLayout from "../components/dashboard-layout";
 import {Redirect} from "react-router-dom"
 import Home from "../pages/Home"

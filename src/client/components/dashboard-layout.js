@@ -7,7 +7,7 @@ import SafetyPage from "../pages/dashboard-pages/safety-page/safety-page";
 
 function DashboardLayout({children}){
 return (
-    <Container fluid={"xl"}>
+    <Container fluid={"2x"} className="p-2">
         <Row>
             <Col sm={2}><SideBar/></Col>
             {/*<Col sm={8}><SafetyPage/></Col>*/}

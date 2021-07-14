@@ -107,5 +107,13 @@
 
 }
 
+.test{
+  color: #aa00ff;
+}
+.dashboard-page{
+  display: grid;
+  grid-gap:10px;
+}
+
 
 

@@ -1,11 +1,12 @@
 import React, {useEffect} from "react";
 import MainHeader from "../../../components/MainHeader"
-import MainContent from "../../../components/MainContent"
+import Dashboards from "../../../components/MainContent"
 import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
 import Error from "../../../components/common/Error";
+import {Container} from "react-bootstrap";
 
-function HealthPage({healthPageStore}){
+function HealthPage({healthPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
         healthPageStore.pullPage();
         return () => {
@@ -14,6 +15,7 @@ function HealthPage({healthPageStore}){
     }, []);
 
     return (
+
         <div className="safety-page">
             {healthPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
                 healthPageStore.pageStore.pageError ?  <Error error ={healthPageStore.pageStore.pageError}/> :
@@ -22,10 +24,13 @@ function HealthPage({healthPageStore}){
                                     poweredBy = {healthPageStore.pageStore.pageInfo?.poweredBy}
                                     text={healthPageStore.pageStore.pageInfo?.text}
                                     imageURL = {healthPageStore.pageStore.pageInfo?.imageUrl}
+                                    indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Health")?.indicators}
+
                         />
-                        <MainContent/>
+
                     </>
             )}
-        </div>)
+        </div>
+        )
 }
-export default  compose(inject("healthPageStore"))(observer(HealthPage))
+export default  compose(inject("healthPageStore","homeIndicatorsPageStore"))(observer(HealthPage))

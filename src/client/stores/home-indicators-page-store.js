@@ -25,7 +25,7 @@ class HomeIndicatorsPageStore{
           this.ecology = res.data.ecology;
           this.safety= res.data.safety;
           this.administration= res.data.administration;
-          console.log("health last 7 dayss:",this.health.last7Days)
+          console.log("health last 7 days:",this.health.last7Days)
       })).catch(action((error)=> {
           console.log("error at :",error);
           this.error =  error;
@@ -50,19 +50,19 @@ class HomeIndicatorsPageStore{
                     {
                         rate:this.ecology?.today ?? noData,
                         text:" AQI today",
-                        icon: getAqiIcon(this.ecology?.today)
+                        icon: getAqiIcon(this.ecology?.today,"icon")
                     },
                     {
                         rate:this.ecology?.thisMonth ?? noData,
                         text:" AQI current month",
-                        icon: getAqiIcon(this.ecology?.thisMonth)
+                        icon: getAqiIcon(this.ecology?.thisMonth,"icon")
 
 
                     } ,
                     {
                         rate:this.ecology?.lastMonth?? noData,
                         text:" AQI last month",
-                        icon: getAqiIcon(this.ecology?.lastMonth)
+                        icon: getAqiIcon(this.ecology?.lastMonth,"icon")
 
 
                     }]
@@ -75,7 +75,7 @@ class HomeIndicatorsPageStore{
                 indicators:[
 
                     {
-                        bigRate:this.health?.last7Days?? noData,
+                        bigRate:this.health?.last7Days ?? noData,
                         text:"this week"
                     },
                     {
