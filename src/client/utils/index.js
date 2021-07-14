@@ -1,34 +1,34 @@
 import {faSmile, faDizzy, faFrown, faMeh, faMehBlank, faTired, faSmileBeam} from "@fortawesome/free-regular-svg-icons";
 import React from "react"
 
-export const getAqiIcon = (rate)=>{
+export const getAqiIcon = (rate,type)=>{
     const rates = [
         {
-            status:"green",
+            status:"#889d02",
             min: 0,
             max:50,
             icon:faSmile
         },  {
-            status:"yellow",
+            status:"#d8ab03",
             min: 51,
             max:100,
             icon:faMeh
         },  {
-            status:"red",
+            status:"#f04403",
             min: 101,
             max:151,
             icon:faFrown
         },  {
-            status:"purple",
+            status:"#aa00ff",
             min: 151,
             max:200,
             icon:faMeh
         },
     ]
 
-
-    let  res = rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.icon;
-    return res ;
+    if(type === "status")
+    return rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.status;
+    return rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.icon;
 
 
 }

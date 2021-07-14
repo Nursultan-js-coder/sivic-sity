@@ -21,9 +21,13 @@ const ecologyPage = {
     get:()=>request.get("/ecology-page")
 }
 
+const administration = {
+    get:()=>request.get("/administration-page")
+}
 export const apiClient = {
     common ,
     safetyPage,
     healthPage,
-    ecologyPage
+    ecologyPage,
+    administration
 }

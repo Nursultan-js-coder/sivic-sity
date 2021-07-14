@@ -14,9 +14,7 @@ function Home({homeIndicatorsPageStore}){
     },[])
 
    return (
- <Container  className="mt-2">
-
-
+ <Container className="mt-2">
      <Row >
          {homeIndicatorsPageStore.pageLoading ? <p>Loading...</p> : (
              homeIndicatorsPageStore.error ? <Error error ={homeIndicatorsPageStore.error }/> :
@@ -28,7 +26,6 @@ function Home({homeIndicatorsPageStore}){
                  )
              })))
          }
-
      </Row>
  </Container>
 

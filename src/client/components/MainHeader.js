@@ -5,13 +5,12 @@ import MainHeaderImage from "./MainHeaderImage"
 import DynamicIndicators from "../pages/dashboard-pages/safety-page/DynamicIndicators"
 import {imageComposer} from "../utils";
 
-function MainHeader({title,poweredBy,text,imageURL}){
+function MainHeader({title,poweredBy,text,imageURL,indicators}){
     useEffect(() => {
-      console.log("title: ",title,"poweredBy:",poweredBy,"imageURL: ",imageComposer(imageURL))
     }, []);
 
     return (
-        <Container>
+        <Container style={{padding:0}} className="mb-2">
             <Row>
                 <Col sm={4}>
                     <MainHeaderContext poweredBy={poweredBy} title={title} text ={text} imageURL={imageURL}/>
@@ -22,7 +21,7 @@ function MainHeader({title,poweredBy,text,imageURL}){
                 </Col>
             </Row>
 
-                <DynamicIndicators/>
+                <DynamicIndicators indicators={indicators} />
         </Container>
 )
 }

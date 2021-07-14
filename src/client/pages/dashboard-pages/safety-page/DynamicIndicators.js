@@ -1,21 +1,40 @@
 import React from "react";
-import img1  from "../../../assets/img/Dynamic1.svg"
-import img2  from "../../../assets/img/Dynamic2.svg"
-import PieChart from "./PieChart";
+import {Col, Row} from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {getAqiIcon, getStatus} from "../../../utils"
 
-function DynamicIndicators(){
+
+function DynamicIndicators({indicators}){
 
     return (
         <>
-       <div className="d-flex flex-row">
-           <div className={"dynamic-card"}>
-               <PieChart/>
-           </div>
-           <div className="dynamic-card">
-               <PieChart/>
+            <Row>
 
-           </div>
-       </div>
+                {indicators.map((indicator)=>{
+                    const status = indicator?.rate ?  getAqiIcon(indicator.rate,"status"):getAqiIcon(indicator.bigRate,"status") ;
+                    return (
+                        <Col className={"mt-10"} >
+                            <div  className="page-indicator"  >
+                                <div sm={4}  >
+                                    {indicator?.rate ? (<p  className="mt-4 p-2 " style={{width:50,height:50,borderRadius:"50%",
+                                            backgroundColor:status,color:"#000",fontSize:"1.3rem"}}>{indicator.rate}</p>) :
+                                        (<p className="mt-4 p-2" style={{borderRadius:"50%",backgroundColor:status,color:"#000",
+                                            fontSize:"1.3rem",width:50,height:50}}>{indicator?.bigRate}</p>)}
+                                </div>
+                                <div sm={6} >
+                                    <p>{indicator?.text}</p>
+
+                                </div>
+                                <div sm={4}>
+                                    <FontAwesomeIcon icon={indicator?.icon} color={status} size="4x" className="mt-2"/>
+                                </div>
+                            </div>
+                        </Col>
+                    )
+                })}
+
+            </Row>
+
         </>
     )
 }

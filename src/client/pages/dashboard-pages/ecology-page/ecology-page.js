@@ -1,20 +1,22 @@
 import React, {useEffect} from "react";
 import MainHeader from "../../../components/MainHeader"
-import MainContent from "../../../components/MainContent"
+import Dashboards from "../../../components/MainContent"
 import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
 import Error from "../../../components/common/Error";
+import MainContent from "../../../components/MainContent";
 
-function EcologyPage({ecologyPageStore}){
+function EcologyPage({ecologyPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
         ecologyPageStore.pullPage();
+        // homeIndicatorsPageStore.pullPage();
         return () => {
             ecologyPageStore.resetPage();
         };
     }, []);
 
     return (
-        <div className="safety-page">
+        <div className="dashboard-page">
             {ecologyPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
                 ecologyPageStore.pageStore.pageError ?  <Error error ={ecologyPageStore.pageStore.pageError}/> :
                     <>
@@ -22,10 +24,12 @@ function EcologyPage({ecologyPageStore}){
                                     poweredBy = {ecologyPageStore.pageStore.pageInfo?.poweredBy}
                                     text={ecologyPageStore.pageStore.pageInfo?.text}
                                     imageURL = {ecologyPageStore.pageStore.pageInfo?.imageUrl}
+                                    indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Ecology")?.indicators}
                         />
                         <MainContent/>
+
                     </>
             )}
         </div>)
 }
-export default  compose(inject("ecologyPageStore"))(observer(EcologyPage))
+export default  compose(inject("ecologyPageStore","homeIndicatorsPageStore"))(observer(EcologyPage))

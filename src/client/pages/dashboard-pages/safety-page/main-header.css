@@ -3,15 +3,31 @@
     border-radius:10px;
 }
 .dynamic-card{
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    width:300px;
-    margin:50px;
-    padding:20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 3px 4px;
+    width:100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap:5px;
 }
-.shadow{
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
+.page-indicator{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    max-height:80px;
+    font-size:0.75rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+.page-indicator > * {
+    text-align: center;
+    margin-right:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:5px;
+}
+
+
 
 
 
