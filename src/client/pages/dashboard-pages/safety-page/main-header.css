@@ -1,3 +1,5 @@
+
+
 .main-header-image{
     max-width:100%;
     border-radius:10px;
@@ -8,6 +10,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-gap:5px;
+
 }
 
 .page-indicator{
@@ -17,6 +20,8 @@
     max-height:80px;
     font-size:0.75rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin:5px;
+
 }
 .page-indicator > * {
     text-align: center;
@@ -27,6 +32,13 @@
     padding:5px;
 }
 
+.all-indicators{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content:space-around;
+    max-height:100px;
+}
 
 
 

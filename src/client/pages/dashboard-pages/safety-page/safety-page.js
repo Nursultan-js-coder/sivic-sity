@@ -4,6 +4,8 @@ import Dashboards from "../../../components/MainContent"
 import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
 import Error from "../../../components/common/Error";
+import MainContent from "../../../components/MainContent";
+import {Container} from "react-bootstrap";
 
 function SafetyPage({safetyPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
@@ -14,7 +16,7 @@ function SafetyPage({safetyPageStore,homeIndicatorsPageStore}){
     }, []);
 
     return (
-        <div className="safety-page">
+        <Container className="safety-page">
             {safetyPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
                 safetyPageStore.pageStore.pageError ?  <Error error ={safetyPageStore.pageStore.pageError}/> :
                 <>
@@ -24,8 +26,10 @@ function SafetyPage({safetyPageStore,homeIndicatorsPageStore}){
                                 imageURL = {safetyPageStore.pageStore.pageInfo?.imageUrl}
                                 indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Safety")?.indicators}
                     />
+                    <MainContent/>
+
                 </>
             )}
-        </div>)
+        </Container>)
 }
 export default  compose(inject("safetyPageStore","homeIndicatorsPageStore"))(observer(SafetyPage))

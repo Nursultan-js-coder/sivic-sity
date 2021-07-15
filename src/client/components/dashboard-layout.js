@@ -10,7 +10,6 @@ return (
     <Container fluid={"2x"} className="p-2">
         <Row>
             <Col sm={2}><SideBar/></Col>
-            {/*<Col sm={8}><SafetyPage/></Col>*/}
             <Col sm={8}>{children}</Col>
             <Col sm={2}><TwitterWidget/></Col>
         </Row>

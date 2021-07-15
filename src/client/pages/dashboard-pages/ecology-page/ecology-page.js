@@ -5,6 +5,7 @@ import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
 import Error from "../../../components/common/Error";
 import MainContent from "../../../components/MainContent";
+import {Container} from "react-bootstrap";
 
 function EcologyPage({ecologyPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
@@ -16,7 +17,7 @@ function EcologyPage({ecologyPageStore,homeIndicatorsPageStore}){
     }, []);
 
     return (
-        <div className="dashboard-page">
+        <Container className="dashboard-page">
             {ecologyPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
                 ecologyPageStore.pageStore.pageError ?  <Error error ={ecologyPageStore.pageStore.pageError}/> :
                     <>
@@ -30,6 +31,6 @@ function EcologyPage({ecologyPageStore,homeIndicatorsPageStore}){
 
                     </>
             )}
-        </div>)
+        </Container>)
 }
 export default  compose(inject("ecologyPageStore","homeIndicatorsPageStore"))(observer(EcologyPage))
