@@ -24,6 +24,12 @@ export const getAqiIcon = (rate,type)=>{
             max:200,
             icon:faMeh
         },
+        {
+            status:"#5b00ff",
+            min: 200,
+            max:99999,
+            icon:faMeh
+        },
     ]
 
     if(type === "status")

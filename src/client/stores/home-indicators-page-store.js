@@ -81,7 +81,14 @@ class HomeIndicatorsPageStore{
                     {
                         bigRate:this.health?.between7And14Days ?? noData,
                         text:"last week"
-                    } ]
+                    },
+                    {
+                        dynamic:calculateDynamic( parseInt(this.health?.last7Days),parseInt(this.health?.between7And14Days)) ?? 0,
+                        text:"dynamic"
+                    }
+
+
+                ]
             },
             {
                 title:"Safety",
@@ -98,6 +105,11 @@ class HomeIndicatorsPageStore{
                         bigRate:this.safety?.between7And14Days ?? noData,
                         text:"last week"
                     } ,
+                    {
+                        // dynamic:calculateDynamic(parseInt(this.safety?.last7Days),parseInt(this.safety?.between7And14Days)) ?? 0,
+                        dynamic: 0,
+                        text:"dynamic"
+                    }
                   ]
             },
             {
@@ -107,12 +119,12 @@ class HomeIndicatorsPageStore{
                 subtitle:"Accident quantity",
                 indicators:[
                     {
-                        bigRate:this.safety?.last7Days?? noData,
-                        text:"this weeek"
+                        bigRate:this.administration?.primarySchool?? noData,
+                        text:"Primaty Schools"
                     },
                     {
-                        between7And14Days:this.safety?.between7And14Days ?? noData,
-                        text:"last  weeek"
+                        bigRate:this.administration?.preSchool ?? noData,
+                        text:"Preporation Schools"
 
                     }]
             }
@@ -122,3 +134,7 @@ class HomeIndicatorsPageStore{
 }
 
 export default  new HomeIndicatorsPageStore()
+
+function calculateDynamic(newRate,oldRate){
+    return Math.floor((((parseInt(newRate)-parseInt(oldRate)))/parseInt(oldRate))*100);
+}

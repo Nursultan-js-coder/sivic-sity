@@ -1,76 +1,76 @@
 import React, { Component } from "react";
-import { Map, GeoJSON } from "react-leaflet";
-import mapData from "./countries.json";
+import {Map, GeoJSON, TileLayer} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MyMap.css";
+import {mtuData} from "./mtu";
+import {mtuStyle} from "./styles.js"
+import {highlightStyle} from "./styles";
+import {originalStyle} from "./styles";
 
-class MyMap extends Component {
-  state = { color: "#ffff00" };
 
+function MyMap() {
 
-
-  colors = ["green", "blue", "yellow", "orange", "grey"];
-
-  componentDidMount() {
-    console.log(mapData);
+  const BishkekCoordinates = [42.88, 74.61];
+  const zoom = 11.39;
+  const minZoom = 12;
+  const bounds = [
+    [42.9785, 74.3939],
+    [42.7843, 74.8455]
+  ];
+  const mouseoverHandle = (event) =>{
+event.target.openPopup();
+event.target.setStyle(highlightStyle)
+  }
+  const handleMouseout = (event)=>{
+    event.target.setStyle(originalStyle)
   }
 
-  countryStyle = {
-    fillColor: "red",
-    fillOpacity: 1,
-    color: "black",
-    weight: 2,
-  };
 
-
-  printMesssageToConsole = (event) => {
-    console.log("Clicked");
-  };
-
-  changeCountryColor = (event) => {
-    event.target.setStyle({
-      color: "green",
-      fillColor: this.state.color,
-      fillOpacity: 1,
-    });
-  };
-
-  onEachCountry = (country, layer) => {
-    const countryName = country.properties.ADMIN;
-    console.log(countryName);
-    layer.bindPopup(countryName);
-
-    layer.options.fillOpacity = Math.random(); //0-1 (0.1, 0.2, 0.3)
-    // const colorIndex = Math.floor(Math.random() * this.colors.length);
-    // layer.options.fillColor = this.colors[colorIndex]; //0
-
+  const onEachCountry = (mtu, layer) => {
+    const mtuName = mtu.properties.name;
+    const medical = mtu.properties.name;
+    const population = mtu.properties.Population;
+    const area = mtu.properties.Area;
+    const perimeter = mtu.properties.Perimeter;
+    const rayon = mtu.properties.rayon;
+    layer.bindTooltip(mtuName,{permanent:true,className:"mtuLabel",direction:"center"})
+    console.log(mtuName);
+    layer.bindPopup(`MTU ${mtuName}:<br>
+Population:${population}<br/>
+Medical : ${medical}<br>
+Rayon :${rayon}<br>
+Area : ${area}<br> 
+Perimeter : ${perimeter}
+`);
     layer.on({
-      click: this.changeCountryColor,
+      mouseover:mouseoverHandle,
+      mouseout:handleMouseout
     });
   };
 
-  colorChange = (event) => {
-    this.setState({ color: event.target.value });
-  };
 
-  render() {
+
     return (
     <>
-        <Map style={{ height: "80vh",width:"100%" }} zoom={2} id = "map"center={[20, 100]}>
+        <Map style={{ height: "40vh",width:"100%" ,maxHeight:"40vh"}} zoom={zoom} minZoom={minZoom} bounds={bounds} id = "map"center={BishkekCoordinates}>
+          <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+              // url='https://vec{s}.maps.yandex.net/tiles?l=map&v=4.55.2&z={z}&x={x}&y={y}&scale=2&lang=ru_RU'
+              // subdomains={['01', '02', '03', '04']}
+              reuseTiles={true}
+              updateWhenIdle={false}
+          />
+
           <GeoJSON
-            style={this.countryStyle}
-            data={mapData.features}
-            onEachFeature={this.onEachCountry}
+            style={mtuStyle}
+            data={mtuData}
+            onEachFeature={onEachCountry}
           />
         </Map>
-        <input
-          type="color"
-          value={this.state.color}
-          onChange={this.colorChange}
-        />
     </>
-    );
-  }
+    )
+
 }
 
 export default MyMap;

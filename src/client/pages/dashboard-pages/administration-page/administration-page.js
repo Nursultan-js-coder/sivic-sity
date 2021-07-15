@@ -4,6 +4,8 @@ import Dashboards from "../../../components/MainContent"
 import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
 import Error from "../../../components/common/Error";
+import MainContent from "../../../components/MainContent";
+import {Container} from "react-bootstrap";
 
 function AdministrationPage({administrationPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
@@ -14,7 +16,7 @@ function AdministrationPage({administrationPageStore,homeIndicatorsPageStore}){
     }, []);
 
     return (
-        <div className="safety-page">
+        <Container className="safety-page">
             {administrationPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
                 administrationPageStore.pageStore.pageError ?  <Error error ={administrationPageStore.pageStore.pageError}/> :
                     <>
@@ -24,8 +26,10 @@ function AdministrationPage({administrationPageStore,homeIndicatorsPageStore}){
                                     imageURL = {administrationPageStore.pageStore.pageInfo?.imageUrl}
                                     indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Administration")?.indicators}
                         />
+                        <MainContent/>
+
                     </>
             )}
-        </div>)
+        </Container>)
 }
 export default  compose(inject("administrationPageStore","homeIndicatorsPageStore"))(observer(AdministrationPage))

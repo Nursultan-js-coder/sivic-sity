@@ -5,6 +5,7 @@ import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
 import Error from "../../../components/common/Error";
 import {Container} from "react-bootstrap";
+import MainContent from "../../../components/MainContent";
 
 function HealthPage({healthPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
@@ -16,7 +17,7 @@ function HealthPage({healthPageStore,homeIndicatorsPageStore}){
 
     return (
 
-        <div className="safety-page">
+        <Container className="health-page">
             {healthPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
                 healthPageStore.pageStore.pageError ?  <Error error ={healthPageStore.pageStore.pageError}/> :
                     <>
@@ -27,10 +28,12 @@ function HealthPage({healthPageStore,homeIndicatorsPageStore}){
                                     indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Health")?.indicators}
 
                         />
+                        <MainContent/>
+
 
                     </>
             )}
-        </div>
+        </Container>
         )
 }
 export default  compose(inject("healthPageStore","homeIndicatorsPageStore"))(observer(HealthPage))

@@ -31,6 +31,7 @@ export default function HomeLandingPage(){
                       <Route  path="/home/administration-page">
                       <AdministrationPage/>
                       </Route>
+                          <Redirect to="/home"/>
                       </DashboardLayout>
                   </Switch>
                 {/*<Content/>*/}

@@ -1,6 +1,7 @@
 .leaflet-container {
     height: 564px;
     width: 90%;
+    border:1px solid red;
 }
 
 .leaflet-div-icon {
