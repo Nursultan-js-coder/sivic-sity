@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Map, GeoJSON, TileLayer} from "react-leaflet";
+import {MapContainer, GeoJSON, TileLayer} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MyMap.css";
 import {mtuData} from "./mtu";
@@ -8,18 +8,19 @@ import {highlightStyle} from "./styles";
 import {originalStyle} from "./styles";
 
 
-function MyMap() {
+
+function MyMap({children}) {
 
   const BishkekCoordinates = [42.88, 74.61];
-  const zoom = 11.39;
-  const minZoom = 12;
+  const zoom = 11.29;
+  const minZoom = 11.29;
   const bounds = [
     [42.9785, 74.3939],
     [42.7843, 74.8455]
   ];
   const mouseoverHandle = (event) =>{
-event.target.openPopup();
-event.target.setStyle(highlightStyle)
+    event.target.openPopup();
+    event.target.setStyle(highlightStyle)
   }
   const handleMouseout = (event)=>{
     event.target.setStyle(originalStyle)
@@ -34,12 +35,11 @@ event.target.setStyle(highlightStyle)
     const perimeter = mtu.properties.Perimeter;
     const rayon = mtu.properties.rayon;
     layer.bindTooltip(mtuName,{permanent:true,className:"mtuLabel",direction:"center"})
-    console.log(mtuName);
     layer.bindPopup(`MTU ${mtuName}:<br>
 Population:${population}<br/>
 Medical : ${medical}<br>
 Rayon :${rayon}<br>
-Area : ${area}<br> 
+Area : ${area}<br>
 Perimeter : ${perimeter}
 `);
     layer.on({
@@ -50,9 +50,11 @@ Perimeter : ${perimeter}
 
 
 
-    return (
-    <>
-        <Map style={{ height: "40vh",width:"100%" ,maxHeight:"40vh"}} zoom={zoom} minZoom={minZoom} bounds={bounds} id = "map"center={BishkekCoordinates}>
+
+
+  return (
+      <>
+        <MapContainer style={{ height: "60vh",width:"100%" ,maxHeight:"60vh"}} zoom={zoom} minZoom={minZoom} bounds={bounds} center={BishkekCoordinates}>
           <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -63,13 +65,14 @@ Perimeter : ${perimeter}
           />
 
           <GeoJSON
-            style={mtuStyle}
-            data={mtuData}
-            onEachFeature={onEachCountry}
+              style={mtuStyle}
+              data={mtuData}
+              onEachFeature={onEachCountry}
           />
-        </Map>
-    </>
-    )
+          {children}
+        </MapContainer>
+      </>
+  )
 
 }
 

@@ -5,11 +5,12 @@ import {inject, observer} from "mobx-react";
 import {compose} from "recompose"
 import {v4 as uuidv4} from "uuid"
 import Error from "../components/common/Error"
+import {apiClient} from "../api/apiClient";
 
 
 function Home({homeIndicatorsPageStore}){
-    useEffect(()=>{
-        homeIndicatorsPageStore.pullPage();
+    useEffect(async ()=>{
+        homeIndicatorsPageStore.pullPage()
         return (()=>homeIndicatorsPageStore.resetPage())
     },[])
 

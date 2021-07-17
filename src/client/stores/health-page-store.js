@@ -1,24 +1,27 @@
 
-import {makeAutoObservable} from "mobx";
+import {action, makeAutoObservable, makeObservable} from "mobx";
 import CommonPageStore from "./common-page-store";
 import {apiClient} from "../api/apiClient";
+import MapStore from "./mapStore";
 
 
 class HealthPageStore{
-    pageStore = new CommonPageStore(apiClient.healthPage.get);
-
+    pageStore = undefined;
     constructor(){
-        makeAutoObservable(this,{
-            pageStore:false
+        this.pageStore = new CommonPageStore(apiClient.healthPage.get)
+        makeObservable(this,{
+            pageStore:false,
+            pullPage:false,
+            resetPage:false
         });
     }
-
-    pullPage(){
-        this.pageStore.pullPageInfo();
+     pullPage(){
+         this.pageStore.pullPageInfo();
     }
     resetPage(){
         this.pageStore.resetError();
     }
+
 }
 
 export default new HealthPageStore();

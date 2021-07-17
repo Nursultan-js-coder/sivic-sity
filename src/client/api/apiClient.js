@@ -15,7 +15,7 @@ const safetyPage= {
     get:()=>request.get("/safety-page")
 }
 const healthPage = {
-    get:()=>request.get("/health-page")
+    get:async()=>request.get("/health-page"),
 }
 const ecologyPage = {
     get:()=>request.get("/ecology-page")
