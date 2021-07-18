@@ -6,6 +6,7 @@ import {compose} from "recompose"
 import {v4 as uuidv4} from "uuid"
 import Error from "../components/common/Error"
 import {apiClient} from "../api/apiClient";
+import SpinnerLoader from "../components/common/spinner-loader";
 
 
 function Home({homeIndicatorsPageStore}){
@@ -17,7 +18,7 @@ function Home({homeIndicatorsPageStore}){
    return (
  <Container className="mt-2">
      <Row >
-         {homeIndicatorsPageStore.pageLoading ? <p>Loading...</p> : (
+         {homeIndicatorsPageStore.pageLoading ? <SpinnerLoader/> : (
              homeIndicatorsPageStore.error ? <Error error ={homeIndicatorsPageStore.error }/> :
                  (homeIndicatorsPageStore.indicators &&  homeIndicatorsPageStore.indicators.map(indicator=>{
                  return (

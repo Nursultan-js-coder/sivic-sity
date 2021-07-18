@@ -20,10 +20,10 @@ class HealthPageStore{
         makeObservable(this,{
             pageStore:false,
             pullPage:false,
+            mapStore:false,
             resetPage:false,
             occasions:observable,
             pullOccasions:action,
-            createTooltipContent:computed,
             markers:computed
         });
     }
@@ -36,9 +36,7 @@ class HealthPageStore{
         this.pageStore.resetError();
         this.mapStore.resetError()
     }
-    get createTooltipContent(){
 
-    }
     pullOccasions(){
         this.pageStore.pageIsLoading = true;
         return apiClient.healthPage.occasions()
@@ -54,22 +52,21 @@ class HealthPageStore{
     get markers() {
         return (
             <MarkerClusterGroup>
-                {this.mapStore.coordinates.map((coordinate)=>{
-                    let occasion = this.occasions.find(occ =>occ.id === coordinate.finOccasionId)?.name
+                {this.mapStore.coordinates.map((coordinate) => {
+                    let occasion = this.occasions.find(occ => occ.id === coordinate.finOccasionId)?.name
 
                     return (
-                        <Marker position={[coordinate.latitude,coordinate.longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})} >
+                        <Marker position={[coordinate.latitude, coordinate.longitude]}
+                                icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                             <Tooltip>
                                 {`MTU-${coordinate.mtuId} <br>
                                 Illness type:${occasion}<br>
                                 Date:${new Date(coordinate.dateTime).toLocaleDateString()}<br>
                                 Time:${new Date(coordinate.dateTime).toLocaleTimeString()}<br>
-                                `  }
-                                </Tooltip>
+                                `}
+                            </Tooltip>
                         </Marker>
                     )
-                })}
-                )
                 })}
 
             </MarkerClusterGroup>

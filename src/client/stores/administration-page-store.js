@@ -64,8 +64,7 @@ class AdministrationPageStore {
                         </Marker>
                     )
                 })}
-                )
-                })}
+
 
             </MarkerClusterGroup>
         )

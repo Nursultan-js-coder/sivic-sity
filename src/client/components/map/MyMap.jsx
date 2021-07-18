@@ -20,7 +20,6 @@ const LoadingControl = observer(({isLoading}) => {
   if (!mapRef.spin) return null;
   if (isLoading) mapRef.spin(true);
   else mapRef.spin(false);
-
   return null;
 });
 

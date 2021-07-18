@@ -7,34 +7,44 @@ export const getAqiIcon = (rate,type)=>{
             status:"#889d02",
             min: 0,
             max:50,
-            icon:faSmile
+            icon:faSmile,
+            class:"cluster-marker-icon-1"
         },  {
             status:"#d8ab03",
             min: 51,
             max:100,
-            icon:faMeh
+            icon:faMeh,
+            class:"cluster-marker-icon-2"
+
         },  {
             status:"#f04403",
             min: 101,
             max:151,
-            icon:faFrown
+            icon:faFrown,
+            class:"cluster-marker-icon-3"
+
         },  {
             status:"#aa00ff",
             min: 151,
             max:200,
-            icon:faMeh
+            icon:faMeh,
+            class:"cluster-marker-icon-4"
+
         },
         {
             status:"#5b00ff",
             min: 200,
             max:99999,
-            icon:faMeh
+            icon:faMeh,
+            class:"cluster-marker-icon-5"
+
         },
     ]
-
-    if(type === "status")
-    return rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.status;
-    return rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.icon;
+     if(type === "class")
+         return rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.class;
+     else if(type === "status")
+     return rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.status;
+     return rates.find((rateItem) => (rate >= rateItem.min && rate <= rateItem.max))?.icon;
 
 
 }

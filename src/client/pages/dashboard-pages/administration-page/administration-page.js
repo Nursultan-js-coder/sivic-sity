@@ -6,6 +6,7 @@ import {compose} from "recompose";
 import Error from "../../../components/common/Error";
 import MainContent from "../../../components/MainContent";
 import {Container} from "react-bootstrap";
+import SpinnerLoader from "../../../components/common/spinner-loader";
 
 function AdministrationPage({administrationPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
@@ -16,8 +17,8 @@ function AdministrationPage({administrationPageStore,homeIndicatorsPageStore}){
     }, []);
 
     return (
-        <Container className="safety-page">
-            {administrationPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
+        <Container className="dashboard-page">
+            {administrationPageStore.pageStore.pageIsLoading ? (<SpinnerLoader/>):(
                 administrationPageStore.pageStore.pageError ?  <Error error ={administrationPageStore.pageStore.pageError}/> :
                     <>
                         <MainHeader title = {administrationPageStore.pageStore.pageInfo?.title}
@@ -28,7 +29,7 @@ function AdministrationPage({administrationPageStore,homeIndicatorsPageStore}){
                         />
                          <MainContent
                              mapLoading={administrationPageStore.mapStore.coordinatesLoading}
-                             markers={administrationPageStore.markers}/>}
+                             markers={administrationPageStore.markers}/>
 
                     </>
             )}

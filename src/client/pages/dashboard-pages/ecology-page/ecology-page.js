@@ -6,11 +6,11 @@ import {compose} from "recompose";
 import Error from "../../../components/common/Error";
 import MainContent from "../../../components/MainContent";
 import {Container} from "react-bootstrap";
+import SpinnerLoader from "../../../components/common/spinner-loader";
 
 function EcologyPage({ecologyPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
         ecologyPageStore.pullPage();
-        // homeIndicatorsPageStore.pullPage();
         return () => {
             ecologyPageStore.resetPage();
         };
@@ -18,7 +18,7 @@ function EcologyPage({ecologyPageStore,homeIndicatorsPageStore}){
 
     return (
         <Container className="dashboard-page">
-            {ecologyPageStore.pageStore.pageIsLoading ? (<p>Loading ... </p>):(
+            {ecologyPageStore.pageStore.pageIsLoading ? (<SpinnerLoader/>):(
                 ecologyPageStore.pageStore.pageError ?  <Error error ={ecologyPageStore.pageStore.pageError}/> :
                     <>
                         <MainHeader title = {ecologyPageStore.pageStore.pageInfo?.title}
@@ -27,7 +27,7 @@ function EcologyPage({ecologyPageStore,homeIndicatorsPageStore}){
                                     imageURL = {ecologyPageStore.pageStore.pageInfo?.imageUrl}
                                     indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Ecology")?.indicators}
                         />
-                        <MainContent/>
+                        <MainContent markers={ecologyPageStore.markers} mapLoading={ecologyPageStore.mapStore.coordinatesLoading}/>
 
                     </>
             )}

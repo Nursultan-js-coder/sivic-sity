@@ -5,6 +5,7 @@ import {compose} from "recompose";
 import Error from "../../../components/common/Error";
 import {Container} from "react-bootstrap";
 import MainContent from "../../../components/MainContent";
+import SpinnerLoader from "../../../components/common/spinner-loader";
 
 function HealthPage({healthPageStore,homeIndicatorsPageStore}){
     useEffect(() => {
@@ -16,8 +17,8 @@ function HealthPage({healthPageStore,homeIndicatorsPageStore}){
 
     return (
 
-        <Container className="health-page">
-            {(healthPageStore.pageStore.pageIsLoading) ? (<p>Loading ... </p>):(
+        <Container className="dashboard-page">
+            {(healthPageStore.pageStore.pageIsLoading) ? (<SpinnerLoader/>):(
                 (healthPageStore.pageStore.pageError  ) ?  <Error error ={healthPageStore.pageStore.pageError}/> :
                     <>
                         <MainHeader title = {healthPageStore.pageStore.pageInfo?.title}
@@ -29,7 +30,7 @@ function HealthPage({healthPageStore,homeIndicatorsPageStore}){
                         />
                         <MainContent
                             mapLoading={healthPageStore.mapStore.coordinatesLoading}
-                            markers={healthPageStore.markers}/>}
+                            markers={healthPageStore.markers}/>
                     </>
             )}
         </Container>

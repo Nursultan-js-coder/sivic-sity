@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
@@ -29,9 +30,11 @@
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-spinners": "^0.11.0",
     "react-twitter-widgets": "^1.10.0",
     "recompose": "^0.30.0",
     "sass-loader": "^12.1.0",
+    "spin.js": "^2.3.2",
     "twitter-widgets": "^2.0.0",
     "uuid": "^8.3.2"
   },

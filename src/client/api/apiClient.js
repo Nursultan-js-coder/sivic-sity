@@ -23,15 +23,18 @@ const safetyPage= {
 const healthPage = {
     get:()=>request.get("/health-page"),
     coordinates:()=>request.get("/health-page/coordinates"),
-    coordinatesLocal:async ()=> {
-        await setTimeout(()=>console.log("wait please..."),3000);
-        console.log("done")
-        return localRequest.get("/coordinates")
-    },
+    coordinatesLocal:async ()=>localRequest.get("/coordinates"),
     occasions:()=>request.get("/health-page/fin-occasions")
 }
 const ecologyPage = {
-    get:()=>request.get("/ecology-page")
+    get:()=>request.get("/ecology-page"),
+    coordinates:()=>request.get("/ecology-page/coordinates"),
+    coordinatesLocal:async ()=> {
+        let response = localRequest.get("/ecology-page-coordinates");
+        console.log("response from localrequest: ",response);
+        return response;
+    }
+
 }
 
 const administration = {

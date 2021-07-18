@@ -3,9 +3,10 @@ import {action, makeAutoObservable} from "mobx";
 
 class MapStore {
     coordinatesLoading = false;
-    coordinates= [];
+    coordinates= undefined;
     errors = undefined;
     constructor(apiCall) {
+        this.coordinates = []
         this.apiCall = apiCall;
         makeAutoObservable(this,{
             apiCall:false
@@ -19,6 +20,7 @@ class MapStore {
         return this.apiCall()
            .then(action((res)=>{
                this.coordinates = res.data;
+               console.log("coordinates of map",this.coordinates)
            }))
            .catch(action((error)=> {
             this.errors = error;

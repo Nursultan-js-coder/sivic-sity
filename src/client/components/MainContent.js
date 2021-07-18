@@ -8,9 +8,9 @@ import Markers from "./MarkerCluster/Markers";
 function MainContent({markers,mapLoading}){
     return (
         <Card>
-            <MyMap mapLoading={mapLoading}>
+            {mapLoading ? <p>Loading ...</p> :( <MyMap mapLoading={mapLoading}>
                 {markers}
-            </MyMap>
+            </MyMap>)}
         </Card>
 
     )

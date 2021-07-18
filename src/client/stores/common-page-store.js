@@ -27,6 +27,7 @@ class CommonPageStore{
         this.pageIsLoading= true;
         return this.apiCall().then(action(async(res)=>{
             this.pageInfo = res.data;
+            console.log("page info ",this.pageInfo)
 
         }))
             .catch(action((err)=>{
