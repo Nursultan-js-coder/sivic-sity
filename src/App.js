@@ -16,8 +16,6 @@ function App() {
               <Route  path="/home">
                   <HomeLandingPage/>
               </Route>
-
-
           </Layout>
 
       </Switch>

@@ -1,15 +1,31 @@
 import React, { Component } from "react";
-import {MapContainer, GeoJSON, TileLayer} from "react-leaflet";
+import {MapContainer, GeoJSON, TileLayer,useMap} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MyMap.css";
 import {mtuData} from "./mtu";
 import {mtuStyle} from "./styles.js"
 import {highlightStyle} from "./styles";
 import {originalStyle} from "./styles";
+import {observer} from "mobx-react";
+
+const MapControl = React.memo(() => {
+  let mapRef = useMap();
+  mapRef.options.maxBoundsViscosity = 1;
+
+  return null;
+});
+
+const LoadingControl = observer(({isLoading}) => {
+  let mapRef = useMap();
+  if (!mapRef.spin) return null;
+  if (isLoading) mapRef.spin(true);
+  else mapRef.spin(false);
+
+  return null;
+});
 
 
-
-function MyMap({children}) {
+function MyMap({children,mapLoading}) {
 
   const BishkekCoordinates = [42.88, 74.61];
   const zoom = 11.29;
@@ -19,7 +35,7 @@ function MyMap({children}) {
     [42.7843, 74.8455]
   ];
   const mouseoverHandle = (event) =>{
-    event.target.openPopup();
+    // event.target.openPopup();
     event.target.setStyle(highlightStyle)
   }
   const handleMouseout = (event)=>{
@@ -35,7 +51,7 @@ function MyMap({children}) {
     const perimeter = mtu.properties.Perimeter;
     const rayon = mtu.properties.rayon;
     layer.bindTooltip(mtuName,{permanent:true,className:"mtuLabel",direction:"center"})
-    layer.bindPopup(`MTU ${mtuName}:<br>
+    layer.bindPopup(`MTU-${mtuName}:<br>
 Population:${population}<br/>
 Medical : ${medical}<br>
 Rayon :${rayon}<br>
@@ -69,7 +85,10 @@ Perimeter : ${perimeter}
               data={mtuData}
               onEachFeature={onEachCountry}
           />
+          <LoadingControl isLoading={mapLoading}/>
+
           {children}
+          <MapControl/>
         </MapContainer>
       </>
   )

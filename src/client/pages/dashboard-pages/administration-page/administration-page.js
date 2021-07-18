@@ -26,7 +26,9 @@ function AdministrationPage({administrationPageStore,homeIndicatorsPageStore}){
                                     imageURL = {administrationPageStore.pageStore.pageInfo?.imageUrl}
                                     indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Administration")?.indicators}
                         />
-                        <MainContent/>
+                         <MainContent
+                             mapLoading={administrationPageStore.mapStore.coordinatesLoading}
+                             markers={administrationPageStore.markers}/>}
 
                     </>
             )}

@@ -17,8 +17,8 @@ function HealthPage({healthPageStore,homeIndicatorsPageStore}){
     return (
 
         <Container className="health-page">
-            {(healthPageStore.pageStore.pageIsLoading)? (<p>Loading ... </p>):(
-                (healthPageStore.pageStore.pageError && healthPageStore.mapStore.errors ) ?  <Error error ={healthPageStore.pageStore.pageError}/> :
+            {(healthPageStore.pageStore.pageIsLoading) ? (<p>Loading ... </p>):(
+                (healthPageStore.pageStore.pageError  ) ?  <Error error ={healthPageStore.pageStore.pageError}/> :
                     <>
                         <MainHeader title = {healthPageStore.pageStore.pageInfo?.title}
                                     poweredBy = {healthPageStore.pageStore.pageInfo?.poweredBy}
@@ -27,7 +27,9 @@ function HealthPage({healthPageStore,homeIndicatorsPageStore}){
                                     indicators = {homeIndicatorsPageStore.indicators.find((indicator)=>indicator.title === "Health")?.indicators}
 
                         />
-                        <MainContent />
+                        <MainContent
+                            mapLoading={healthPageStore.mapStore.coordinatesLoading}
+                            markers={healthPageStore.markers}/>}
                     </>
             )}
         </Container>

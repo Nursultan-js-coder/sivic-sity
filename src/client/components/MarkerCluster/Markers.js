@@ -5,24 +5,29 @@ import React, {useEffect, useState} from "react"
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import {Icon} from 'leaflet'
 import {Marker, Popup, Tooltip} from "react-leaflet";
+import {createTooltipContent} from "../../utils"
 
 
-function Markers(){
-
+function Markers({coordinates,occasions}){
+console.log("occasions:",occasions);
 
     return (
         <MarkerClusterGroup>
-                    <Marker position={[20,20]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})} >
+            {coordinates.map((coordinate)=>{
+
+                return (
+                    <Marker position={[coordinate.latitude,coordinate.longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})} >
                         <Tooltip>
-                            <p>MTU-default</p>
-                            <p>Occasion:nodata</p>
+                            {createTooltipContent(coordinate,occasions)  }
                         </Tooltip>
                     </Marker>
-                )
+            )
+            })}
+            )
             })}
 
-        </MarkerClusterGroup>
-    )
-}
+            </MarkerClusterGroup>
+            )
+            }
 
-export default Markers
+            export default Markers

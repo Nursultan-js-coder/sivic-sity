@@ -43,3 +43,13 @@ export const  imageComposer = (imageURL) =>{
     const BASE_API = "https://api.citydata.kg";
     return BASE_API+imageURL;
 }
+
+
+export const createTooltipContent = (coordinate,occasions) =>{
+    let occasion = occasions.find(occ =>occ.id === coordinate.finOccasionId)?.name
+    return `MTU-${coordinate.mtuId} <br>
+        Illness type:${occasion}<br>
+        Date:${new Date(coordinate.dateTime).toLocaleDateString()}<br>
+        Time:${new Date(coordinate.dateTime).toLocaleTimeString()}<br>
+`
+}

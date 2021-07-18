@@ -9,7 +9,7 @@ import {apiClient} from "../api/apiClient";
 
 
 function Home({homeIndicatorsPageStore}){
-    useEffect(async ()=>{
+    useEffect( ()=>{
         homeIndicatorsPageStore.pullPage()
         return (()=>homeIndicatorsPageStore.resetPage())
     },[])

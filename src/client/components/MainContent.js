@@ -5,14 +5,11 @@ import Markers from "./MarkerCluster/Markers";
 
 
 
-function MainContent(){
-    useEffect(()=>{
-
-    },[])
-    return(
+function MainContent({markers,mapLoading}){
+    return (
         <Card>
-            <MyMap>
-            {/*<Markers/>*/}
+            <MyMap mapLoading={mapLoading}>
+                {markers}
             </MyMap>
         </Card>
 
