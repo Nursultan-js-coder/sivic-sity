@@ -20,14 +20,11 @@ class HomeIndicatorsPageStore{
     pullPage(){
       this.pageLoading=true;
       return apiClient.common.indicators().then(action(res=>{
-          console.log(res.data);
           this.health = res.data.health;
           this.ecology = res.data.ecology;
           this.safety= res.data.safety;
           this.administration= res.data.administration;
-          console.log("health last 7 days:",this.health.last7Days)
       })).catch(action((error)=> {
-          console.log("error at :",error);
           this.error =  error;
       }))
           .finally(action(()=> this.pageLoading=false))
