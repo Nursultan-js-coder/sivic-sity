@@ -132,6 +132,6 @@ class HomeIndicatorsPageStore{
 
 export default  new HomeIndicatorsPageStore()
 
-function calculateDynamic(newRate,oldRate){
+export function calculateDynamic(newRate,oldRate){
     return Math.floor((((parseInt(newRate)-parseInt(oldRate)))/parseInt(oldRate))*100);
 }

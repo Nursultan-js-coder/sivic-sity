@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
-import MainHeader from "../../../components/MainHeader"
+import MainHeader from "../../components/MainHeader"
 import {inject, observer} from "mobx-react";
 import {compose} from "recompose";
-import Error from "../../../components/common/Error";
+import Error from "../../components/common/Error";
 import {Container} from "react-bootstrap";
-import MainContent from "../../../components/MainContent";
-import SpinnerLoader from "../../../components/common/spinner-loader";
+import MainContent from "../../components/MainContent";
+import SpinnerLoader from "../../components/common/spinner-loader";
 
 function HealthPage({healthPageStore,homeIndicatorsPageStore}){
     useEffect(() => {

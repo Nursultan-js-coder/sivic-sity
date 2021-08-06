@@ -8,7 +8,7 @@ import {Marker, Tooltip} from "react-leaflet";
 import {Icon} from "leaflet";
 import React from "react";
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
-import {markerIcon} from "../pages/dashboard-pages/ecology-page/marker-icon"
+import {markerIcon} from "../features/ecology/marker-icon"
 import { toJS } from 'mobx'
 
 // example

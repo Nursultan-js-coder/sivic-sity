@@ -1,13 +1,13 @@
 import React from "react"
 import Content from "../components/dashboard-layout"
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import SafetyPage from "./dashboard-pages/safety-page/safety-page";
-import AdministrationPage from "./dashboard-pages/administration-page/administration-page";
+import SafetyPage from "../features/safety/safety-page";
+import AdministrationPage from "../features/admin/administration-page";
 import DashboardLayout from "../components/dashboard-layout";
 import {Redirect} from "react-router-dom"
-import Home from "../pages/Home"
-import HealthPage from "./dashboard-pages/health-page/health-page";
-import EcologyPage from "./dashboard-pages/ecology-page/ecology-page";
+import Home from "../features/common/Home"
+import HealthPage from "../features/health/health-page";
+import EcologyPage from "../features/ecology/ecology-page";
 
 export default function HomeLandingPage(){
 

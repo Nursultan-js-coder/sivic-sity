@@ -1,5 +1,5 @@
 import React from "react";
-import "../pages/dashboard-pages/safety-page/main-header.css"
+import "../features/safety/main-header.css"
 import {imageComposer} from "../utils"
 
 function MainHeaderImage({imageURL}){

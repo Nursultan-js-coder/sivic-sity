@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import {Container,Row,Col} from "react-bootstrap";
 import MainHeaderContext from "./MainHeaderContext"
 import MainHeaderImage from "./MainHeaderImage"
-import DynamicIndicators from "../pages/dashboard-pages/safety-page/DynamicIndicators"
+import DynamicIndicators from "../features/safety/DynamicIndicators"
 import {imageComposer} from "../utils";
 
 function MainHeader({title,poweredBy,text,imageURL,indicators}){

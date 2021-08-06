@@ -6,10 +6,13 @@ import HomeLandingPage from "./client/pages/HomeLandingPage"
 import Layout from "./client/components/common/Layout";
 import {Provider} from "mobx-react"
 import * as stores from "./client/stores"
+import {Provider as ReduxStoreProvider} from "react-redux";
+import {store} from   "./store"
 
 function App() {
   return (
       <Provider {...stores}>
+          <ReduxStoreProvider store={store}>
     <Router>
       <Switch>
           <Layout>
@@ -20,6 +23,7 @@ function App() {
 
       </Switch>
     </Router>
+          </ReduxStoreProvider>
       </Provider>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {getAqiIcon, getStatus} from "../../../utils"
+import {getAqiIcon, getStatus} from "../../utils"
 import {faMeh, faSmile} from "@fortawesome/free-regular-svg-icons";
 
 

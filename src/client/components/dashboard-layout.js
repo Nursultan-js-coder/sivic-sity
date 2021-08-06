@@ -2,7 +2,7 @@ import {Container,Col,Row} from "react-bootstrap";
 import React from "react";
 import SideBar from "./SideBar"
 import TwitterWidget from "./twitter/TwitterWidget"
-import SafetyPage from "../pages/dashboard-pages/safety-page/safety-page";
+import SafetyPage from "../features/safety/safety-page";
 
 
 function DashboardLayout({children}){

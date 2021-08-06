@@ -1,11 +1,13 @@
 import React, {useEffect} from "react"
 import MyMap from "../components/map/MyMap"
 import {Card} from "react-bootstrap";
-import Markers from "./MarkerCluster/Markers";
+import {getMarkers} from "../features/common/utils";
+// import Markers from "./MarkerCluster/Markers";
 
 
 
-function MainContent({markers,mapLoading}){
+function MainContent({mapLoading,markers}){
+    console.log("markers:",markers)
     return (
         <Card>
             {mapLoading ? <p>Loading ...</p> :( <MyMap mapLoading={mapLoading}>
